@@ -15,15 +15,25 @@ There is no package manager, no bundler, and no dev server.
 
 ## Git workflow
 
-Every meaningful change must be committed and pushed to GitHub (`eran1205/claude-code-intro`). Always push after committing — the user wants a saved version on GitHub at all times.
+**Commit and push after every piece of work** — the user must never lose progress. This is a hard requirement, not optional. GitHub (`eran1205/claude-code-intro`) is the source of truth.
+
+- Commit after each logical unit of work (new feature, bug fix, config change). Do not batch unrelated changes into one commit.
+- Always push immediately after committing. Never leave commits that exist only locally.
+- Stage files explicitly by name — never use `git add -A` or `git add .`.
+- Write descriptive commit messages: a short imperative subject line, then a blank line, then a brief body explaining *what* changed and *why* if not obvious.
 
 ```bash
 git add <files>
-git commit -m "..."
+git commit -m "$(cat <<'EOF'
+Short imperative subject line
+
+Optional body explaining what and why.
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+EOF
+)"
 git push
 ```
-
-Never use `git add -A` or `git add .` — stage files explicitly by name.
 
 ## Architecture: shooter.html
 
